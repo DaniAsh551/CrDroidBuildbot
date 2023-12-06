@@ -23,7 +23,7 @@ if [[ "${OS_NAME}" == *"ubuntu"* ]] || [[ "${OS_NAME2}" == *"ubuntu"* ]]; then
     if [[ "${UBUNTU_VERSION}" == *"22.10"* ]]; then
         sudo apt install git repo adb fastboot curl openssh-client sshpass -y bc bison build-essential flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lunzip lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python2 python3 perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils rr jq ruby gem ccache libssl-dev ucommon-utils protobuf-compiler 
     elif [[ "${UBUNTU_VERSION}" == *"21.04"* ]] || [[ "${UBUNTU_VERSION}" == *"21.10"* ]] || [[ "${UBUNTU_VERSION}" == *"22.04"* ]]; then
-        sudo apt install git repo adb fastboot curl openssh-client sshpass -y bc bison build-essential flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lunzip lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils rr jq ruby gem ccache libssl-dev ucommon-utils protobuf-compiler
+        sudo apt install git repo adb fastboot curl openssh-client sshpass -y bc bison build-essential flex g++-multilib gcc-multilib gnupg gperf imagemagick lib32ncurses5-dev lib32z1-dev liblz4-tool libncurses5-dev libsdl1.2-dev libwxgtk3.0-gtk3-dev libxml2 libxml2-utils lunzip lzop pngcrush schedtool squashfs-tools xsltproc zip zlib1g-dev openjdk-8-jdk python3 python-is-python3 perl git git-lfs libncurses5 xmlstarlet virtualenv xz-utils rr jq ruby gem ccache libssl-dev ucommon-utils protobuf-compiler
     elif [[ "${UBUNTU_VERSION}" == *"20.04"* ]]; then
         sudo apt-get install openssh-client sshpass coreutils ucommon-utils git ccache lzop bison build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libghc-bzlib-dev squashfs-tools pngcrush liblz4-tool optipng libc6-dev-i386 gcc-multilib libssl-dev gnupg flex lib32ncurses-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev xsltproc unzip libffi-dev libxml2-dev libxslt1-dev libjpeg8-dev fontconfig libncurses5-dev libncurses5 libncurses5:i386 python-is-python3 protobuf-compiler
         mkdir ~/bin
@@ -111,7 +111,7 @@ rm .KNOX
 
 ## Gdrive
 echo -n "Do you want to setup Gdrive?: "
-read SETUP_GD
+SETUP_GD="n"
 if [ "${SETUP_GD}" = "Yes" ] || [ "${SETUP_GD}" = "yes" ] || [ "${SETUP_GD}" = "Y" ]; then
     GD_FOLDER="${MY_DIR}/gd"
     if ! [ -d "${MY_DIR}"/gd ]; then
@@ -128,13 +128,15 @@ fi
 
 # Github releases
 echo -n "Do you want to setup Github releases?: "
-read SETUP_GH
+SETUP_GH="y"
 if [ "${SETUP_GH}" = "Yes" ] || [ "${SETUP_GH}" = "yes" ] || [ "${SETUP_GH}" = "Y" ]; then
     if [[ "${OS_NAME}" == *"Ubuntu"* ]] || [[ "${OS_NAME2}" == *"Ubuntu"* ]]; then
         wget https://github.com/cli/cli/releases/download/v2.5.2/gh_2.5.2_linux_amd64.deb
         sudo dpkg -i gh_2.5.2_linux_amd64.deb
         rm gh_2.5.2_linux_amd64.deb
-        gh auth login
+        echo "$GH_TOKEN" > .gh-token
+        gh auth login --with-token < .gh-token
+        rm .gh-token
     elif [[ "${OS_NAME}" == *"Fedora"* ]] || [[ "${OS_NAME2}" == *"Fedora"* ]]; then
         sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
         sudo dnf install gh
@@ -149,7 +151,7 @@ fi
 
 # Sourceforge
 echo -n "Do you want to setup SourceForge?: "
-read SETUP_SF
+SETUP_SF="n"
 if [ "${SETUP_SF}" = "Yes" ] || [ "${SETUP_SF}" = "yes" ] || [ "${SETUP_SF}" = "Y" ]; then
     echo -n "Please enter your SourceForge username: "
     read SF_USER
