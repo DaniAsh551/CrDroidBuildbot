@@ -101,9 +101,9 @@ if [[ "${OS_NAME}" == *"Fedora"* ]] || [[ "${OS_NAME2}" == *"Fedora"* ]]; then
         zip \
         zlib-devel \
         zlib-devel.i686
-    mkdir ~/bin
-    curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-    chmod a+x ~/bin/repo
+    # mkdir ~/bin
+    curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+    chmod a+x /usr/bin/repo
     curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.1/protoc-21.1-linux-x86_64.zip
     sudo unzip -o protoc-21.1-linux-x86_64.zip -d /usr/local bin/protoc
     sudo unzip -o protoc-21.1-linux-x86_64.zip -d /usr/local 'include/*'
