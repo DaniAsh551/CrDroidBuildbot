@@ -8,31 +8,31 @@
 
 ## Need To Fill
 #Sync - Required
-ROM_NAME=""
-ANDROID_VERSION=""
-REPO_URL=""
-REPO_BRANCH=""
-MANIFEST_URL=""
-MANIFEST_BRANCH=""
+ROM_NAME="CrDroid"
+ANDROID_VERSION="13"
+REPO_URL="https://github.com/crdroidandroid/android"
+REPO_BRANCH="13.0"
+MANIFEST_URL="https://github.com/DaniAsh551/local_manifests"
+MANIFEST_BRANCH="crdroid"
 
 #Build - Required
-DEVICE_CODENAME=""
+DEVICE_CODENAME="kebab"
 AUTO_ADAPT=""
-LUNCH_NAME=""
-BACON_NAME=""
+LUNCH_NAME="crdroid_kebab-userdebug"
+BACON_NAME="bacon"
 
 #Upload stuff - Optional
-UPLOAD_TYPE=""
-UPLOAD_RECOVERY=""
-TG_USER=""
+UPLOAD_TYPE="GH"
+UPLOAD_RECOVERY="Test"
+TG_USER="$TELEGRAM_BOT"
 
 #Google Drive - Optional
 GD_PATH=""
 
 #Github Releases & OTA - Optional
-GH_USER=""
-GH_TOKEN=""
-GH_REPO_URL=""
+GH_USER="DaniAsh551"
+GH_TOKEN="$GITHUB_TOKEN"
+GH_REPO_URL="https://github.com/DaniAsh551/CrDroidBuildbot"
 OTA_JSON=""
 OTA_LIKE="" #LOS/PE/crDroid/Evox
 CUSTOM_ROM_ZIP_DOWNLOAD_URL="" #Mainly for FTP and gdrive users
@@ -61,7 +61,7 @@ FTP_PASS=""
 FTP_UPLOAD_URL=""
 
 #Telegram - Optional
-TG_TOKEN=""
-TG_CHAT=""
+TG_TOKEN="$TELEGRAM_CHAT"
+TG_CHAT="$TELEGRAM_TOKEN"
 
 source build.sh
