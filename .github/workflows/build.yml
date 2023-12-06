@@ -12,6 +12,9 @@ jobs:
       TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
       TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
     steps:
-      - run: |
+      - name: Checkout kernel source
+        uses: actions/checkout@v3
+      - name: Start Build
+        run: |
           bash ./setup.sh
           bash ./config.sh
