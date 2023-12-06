@@ -1,0 +1,17 @@
+name: Build ROM
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      TELEGRAM_BOT: ${{ secrets.TELEGRAM_BOT }}
+      TELEGRAM_CHAT: ${{ secrets.TELEGRAM_CHAT }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+    steps:
+      - run: |
+          bash ./setup.sh
+          bash ./config.sh
