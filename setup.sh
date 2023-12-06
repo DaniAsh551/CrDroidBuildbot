@@ -29,8 +29,8 @@ if [[ "${OS_NAME}" == *"ubuntu"* ]] || [[ "${OS_NAME2}" == *"ubuntu"* ]]; then
     elif [[ "${UBUNTU_VERSION}" == *"20.04"* ]]; then
         sudo apt-get install openssh-client sshpass coreutils ucommon-utils git ccache lzop bison build-essential zip curl zlib1g-dev g++-multilib libxml2-utils bzip2 libbz2-dev libghc-bzlib-dev squashfs-tools pngcrush liblz4-tool optipng libc6-dev-i386 gcc-multilib libssl-dev gnupg flex lib32ncurses-dev x11proto-core-dev libx11-dev lib32z1-dev libgl1-mesa-dev xsltproc unzip libffi-dev libxml2-dev libxslt1-dev libjpeg8-dev fontconfig libncurses5-dev libncurses5 libncurses5:i386 python-is-python3 protobuf-compiler
         mkdir ~/bin
-        curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
-        chmod a+x ~/bin/repo
+        curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+        chmod a+x /usr/bin/repo
     fi
 fi
 
@@ -110,6 +110,12 @@ if [[ "${OS_NAME}" == *"Fedora"* ]] || [[ "${OS_NAME2}" == *"Fedora"* ]]; then
     rm -f protoc-21.1-linux-x86_64.zip
 fi
 rm .KNOX
+
+if [ ! -f "/usr/bin/repo" ]; then
+    echo repo command not found, attempting download
+    curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > /usr/bin/repo
+    chmod a+x /usr/bin/repo
+fi
 
 ## Gdrive
 echo -n "Do you want to setup Gdrive?: "
